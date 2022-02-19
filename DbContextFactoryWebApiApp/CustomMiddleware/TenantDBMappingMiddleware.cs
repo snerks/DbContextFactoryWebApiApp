@@ -30,6 +30,7 @@ namespace DbContextFactoryWebApiApp.CustomMiddleware
                         var dbContextFactory =
                             httpContext.RequestServices.GetRequiredService<IDbContextFactory>();
 
+                        // Set ServiceId for the scope of the Request
                         dbContextFactory.ServiceId = parsedServiceId;
                     }
                 }
