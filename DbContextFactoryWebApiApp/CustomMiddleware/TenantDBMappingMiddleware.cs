@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DbContextFactoryWebApiApp.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DbContextFactoryWebApiApp.CustomMiddleware
 {
@@ -18,7 +19,6 @@ namespace DbContextFactoryWebApiApp.CustomMiddleware
         public async Task Invoke(HttpContext httpContext)
         {
             // https://github.com/explorer14/WebApplication_MultiTenant
-
             var serviceIdClaim = httpContext?.User?.Claims?.FirstOrDefault(c => c.Type == "service-id");
 
             if (serviceIdClaim != null)
@@ -28,7 +28,7 @@ namespace DbContextFactoryWebApiApp.CustomMiddleware
                     if (int.TryParse(serviceIdClaim.Value, out var parsedServiceId))
                     {
                         var dbContextFactory =
-                            ((IDbContextFactory)httpContext.RequestServices.GetService(typeof(IDbContextFactory)));
+                            httpContext.RequestServices.GetRequiredService<IDbContextFactory>();
 
                         dbContextFactory.ServiceId = parsedServiceId;
                     }
