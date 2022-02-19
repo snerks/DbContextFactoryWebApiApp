@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DbContextFactoryWebApiApp.Controllers
 {
-
     [ApiController]
     [Route("[controller]")]
     public class CustomerController : ControllerBase

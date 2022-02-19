@@ -30,7 +30,6 @@ namespace DbContextFactoryWebApiApp
 
             services.AddScoped<ICustomerService, CustomerService>();
 
-            //services.Configure<ConnectionStringMap>(Configuration.GetSection("ConnectionStrings"));
             services.ConfigurePOCO<ConnectionStringMap>(Configuration.GetSection("ConnectionStrings"));
 
             services.AddScoped<IDbContextFactory, DbContextFactory>(

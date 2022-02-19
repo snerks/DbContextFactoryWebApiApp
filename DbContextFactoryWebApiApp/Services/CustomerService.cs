@@ -7,17 +7,16 @@ namespace DbContextFactoryWebApiApp.Services
 {
     public class CustomerService : ICustomerService
     {
-        private readonly CRMContext crmContext;
+        private readonly CRMContext _crmContext;
 
         public CustomerService(CRMContext crmContext)
         {
-            this.crmContext = crmContext;
-            this.crmContext = crmContext;
+            _crmContext = crmContext;
         }
 
         public IEnumerable<Customer> GetAllCustomers()
         {
-            return crmContext.Customers.ToList();
+            return _crmContext.Customers.ToList();
         }
     }
 }

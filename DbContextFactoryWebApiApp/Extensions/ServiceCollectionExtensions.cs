@@ -6,6 +6,7 @@ namespace DbContextFactoryWebApiApp.Extensions
 {
     public static class ServiceCollectionExtensions
     {
+        // https://www.strathweb.com/2016/09/strongly-typed-configuration-in-asp-net-core-without-ioptionst/
         public static TConfig ConfigurePOCO<TConfig>(this IServiceCollection services, IConfiguration configuration) where TConfig : class, new()
         {
             if (services == null)

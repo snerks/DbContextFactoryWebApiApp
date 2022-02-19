@@ -28,19 +28,19 @@ namespace DbContextFactoryWebApiApp.DataAccess
             modelBuilder.Entity<Customer>().HasKey(e => e.CustomerId);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                var tenants = new string[] { "TenantA", "TenantB" };
-                var connectionString = "Server=(localdb)\\mssqllocaldb;Database={tenant};Trusted_Connection=True;MultipleActiveResultSets=true";
-                optionsBuilder.UseSqlServer(connectionString.Replace("{tenant}", "TenantA"));
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        var tenants = new string[] { "TenantA", "TenantB" };
+        //        var connectionString = "Server=(localdb)\\mssqllocaldb;Database={tenant};Trusted_Connection=True;MultipleActiveResultSets=true";
+        //        optionsBuilder.UseSqlServer(connectionString.Replace("{tenant}", "TenantA"));
 
-                //foreach (string tenant in tenants)
-                //{
-                //    optionsBuilder.UseSqlServer(connectionString.Replace("{tenant}", "TenantA"));
-                //}
-            }
-        }
+        //        //foreach (string tenant in tenants)
+        //        //{
+        //        //    optionsBuilder.UseSqlServer(connectionString.Replace("{tenant}", "TenantA"));
+        //        //}
+        //    }
+        //}
     }
 }
