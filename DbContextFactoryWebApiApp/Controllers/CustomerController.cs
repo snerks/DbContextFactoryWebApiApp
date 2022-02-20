@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using DbContextFactoryWebApiApp.DataAccess.Models;
+using System.Linq;
+using DbContextFactoryWebApiApp.Dtos;
 using DbContextFactoryWebApiApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,11 +18,17 @@ namespace DbContextFactoryWebApiApp.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Customer> Get()
+        public IEnumerable<CustomerDto> Get()
         {
             var customers = _customerService.GetAllCustomers();
 
-            return customers;
+            return customers.Select(c => new CustomerDto
+            {
+                Id = c.CustomerId,
+                Name = c.Name,
+                RegistrationDate = c.RegistrationDate,
+                Website = c.Website
+            });
         }
     }
 }

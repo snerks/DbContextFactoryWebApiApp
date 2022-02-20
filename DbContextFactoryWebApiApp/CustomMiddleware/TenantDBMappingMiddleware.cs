@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using DbContextFactoryWebApiApp.DataAccess;
 using Microsoft.AspNetCore.Builder;
@@ -19,7 +19,8 @@ namespace DbContextFactoryWebApiApp.CustomMiddleware
         public async Task Invoke(HttpContext httpContext)
         {
             // https://github.com/explorer14/WebApplication_MultiTenant
-            var serviceIdClaim = httpContext?.User?.Claims?.FirstOrDefault(c => c.Type == "service-id");
+            //var serviceIdClaim = httpContext?.User?.Claims?.FirstOrDefault(c => c.Type == "service-id");
+            var serviceIdClaim = new Claim("service-id", "1", ClaimValueTypes.Integer32);
 
             if (serviceIdClaim != null)
             {
